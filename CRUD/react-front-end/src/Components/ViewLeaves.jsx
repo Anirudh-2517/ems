@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import LeaveService from "../Services/LeaveService";
+import EmployeeService from "../Services/EmployeeService";
 
 const statusStyle = {
     APPROVED: { bg: "#eaf3de", color: "#3b6d11", dot: "#639922" },

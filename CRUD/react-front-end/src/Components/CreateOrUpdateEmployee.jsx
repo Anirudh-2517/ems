@@ -9,14 +9,38 @@ const CreateOrUpdateEmployee = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
+    const [errors, setErrors] = useState({});
 
     const saveOrUpdateEmployee = (e) => {
         e.preventDefault();
+
+        let newErrors = {};
+
+        if (!firstName.trim()) {
+            newErrors.firstName = "Please enter first name";
+        }
+
+        if (!lastName.trim()) {
+            newErrors.lastName = "Please enter last name";
+        }
+
+        if (!email.trim()) {
+            newErrors.email = "Please enter email address";
+        }
+
+        setErrors(newErrors);
+
+        // Stop if errors exist
+        if (Object.keys(newErrors).length > 0) return;
+
         const employee = { firstName, lastName, email };
+
         if (isNew) {
-            EmployeeService.createEmployee(employee).then(() => navigate("/add-employee/:id"));
+            EmployeeService.createEmployee(employee)
+                .then(() => navigate("/employees"));
         } else {
-            EmployeeService.updateEmployee(id, employee).then(() => navigate("/"));
+            EmployeeService.updateEmployee(id, employee)
+                .then(() => navigate("/employees"));
         }
     };
 

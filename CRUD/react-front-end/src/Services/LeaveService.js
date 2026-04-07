@@ -4,32 +4,39 @@ const LEAVE_BASE_URL = "http://localhost:8085/api/leaves";
 
 class LeaveService {
 
+    // Get all leaves
     getLeaves() {
         return axios.get(LEAVE_BASE_URL);
     }
 
+    // Apply/create a new leave
     createLeave(leave) {
         return axios.post(LEAVE_BASE_URL, leave);
     }
 
-    getLeaveById(lid) {
-        return axios.get(LEAVE_BASE_URL + '/' + lid);
+    // Get leave by ID
+    getLeaveById(leaveId) {
+        return axios.get(`${LEAVE_BASE_URL}/${leaveId}`);
     }
 
-    updateLeave(lid, leave) {
-        return axios.put(LEAVE_BASE_URL + '/' + lid, leave);
+    // Update leave details
+    updateLeave(leaveId, leave) {
+        return axios.put(`${LEAVE_BASE_URL}/${leaveId}`, leave);
     }
 
-    deleteLeave(lid) {
-        return axios.delete(LEAVE_BASE_URL + '/' + lid);
+    // Delete a leave
+    deleteLeave(leaveId) {
+        return axios.delete(`${LEAVE_BASE_URL}/${leaveId}`);
     }
 
-    updateLeaveStatus(id, status) {
-        return axios.put(`${LEAVE_BASE_URL}/${id}/status?status=${status}`);
+    // Update only the status of a leave
+    updateLeaveStatus(leaveId, status) {
+        return axios.put(`${LEAVE_BASE_URL}/${leaveId}/status`, null, { params: { status } });
     }
 
-    getLeavesByEmployee(id) {
-        return axios.get(`${LEAVE_BASE_URL}/employee/${id}`);
+    // Get all leaves for a specific employee
+    getLeavesByEmployee(employeeId) {
+        return axios.get(`${LEAVE_BASE_URL}/employee/${employeeId}`);
     }
 }
 

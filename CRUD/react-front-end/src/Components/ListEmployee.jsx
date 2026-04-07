@@ -32,7 +32,7 @@ const ListEmployee = () => {
 
     const editEmployee = (id) => navigate(`/add-employee/${id}`);
     const deleteEmployee = (id) => {
-        EmployeeService.DeleteEmployee(id).then(() =>
+        EmployeeService.deleteEmployee(id).then(() =>
             setEmployees(employees.filter(emp => emp.id !== id))
         );
     };
@@ -51,12 +51,12 @@ const ListEmployee = () => {
                     <h2 style={{ margin: "0 0 4px", fontSize: "20px", fontWeight: "700", color: "#111827", letterSpacing: "-0.3px" }}>Employees</h2>
                     <p style={{ margin: 0, fontSize: "13px", color: "#9ca3af" }}>{employees.length} total members</p>
                 </div>
-                <button
+                {/* <button
                     onClick={() => navigate("/add-employee/:id")}
                     style={{ display: "inline-flex", alignItems: "center", gap: "7px", padding: "9px 18px", background: "#414447", border: "none", borderRadius: "9px", color: "#fff", fontSize: "13px", fontWeight: "600", cursor: "pointer", letterSpacing: "0.2px" }}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                     Add Employee
-                </button>
+                </button> */}
             </div>
 
             <div style={{ background: "#fff", borderRadius: "12px", border: "0.5px solid #e5e7eb", overflow: "hidden" }}>
